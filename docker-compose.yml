@@ -1,0 +1,5 @@
+green:
+   image: ignacio/apache:1.1
+blue:
+   image: ignacio/apache:1.2
+
