@@ -1,5 +1,36 @@
 green:
-   image: ignacio/apache:1.1
-blue:
-   image: ignacio/apache:1.2
+   image: drupal:7.42
+   links:
+    - db:mysql
+   environment:
+    - VIRTUAL_HOST=bg.introbay.com
+   volumes:
+    - ./settings.php:/var/www/html/sites/default/settings.php
+    - ./app/files:/var/www/html/sites/default/files
+    - ./app/all:/var/www/html/sites/all
+#    - ./app/private_files:/var/www/private_files
+   mem_limit: 512m
+   restart: always
 
+blue:
+   image: drupal:7.43
+   links:
+    - db:mysql
+   environment:
+    - VIRTUAL_HOST=bg.introbay.com
+   volumes:
+    - ./settings.php:/var/www/html/sites/default/settings.php
+    - ./app/files:/var/www/html/sites/default/files
+    - ./app/all:/var/www/html/sites/all
+#    - ./app/private_files:/var/www/private_files
+   mem_limit: 512m
+   restart: always
+
+db:
+   image: mysql:5.6
+   env_file: 
+    - ./mysql.env
+   volumes:
+    - ./db:/var/lib/mysql
+   mem_limit: 748m
+   restart: always

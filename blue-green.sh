@@ -78,11 +78,11 @@ updateApp () {
 ############################################
 
 # 1- Preparation
-PATH=/var/dockers/gbtest
+PATH=/var/dockers/blue-green-docker-drupal
 PROPERTIES_FILE_NAME=blue-green.properties
 PROPERTIES_FILE=$PATH/$PROPERTIES_FILE_NAME
 
-IMAGE_NAME="ignacio/apache"
+IMAGE_NAME="drupal"
 
 # Test the param numbers
 
@@ -113,7 +113,7 @@ getProperties
 /bin/sed -i "s~$IMAGE_NAME\:$previous_version~$IMAGE_NAME\:$IMAGE_NEW_VERSION~g" docker-compose.yml
 
 # TODO: add a param to set that the image is a local one and doesn't need to be pulled
-#pull
+pull
 
 
 # 3- Deploy
